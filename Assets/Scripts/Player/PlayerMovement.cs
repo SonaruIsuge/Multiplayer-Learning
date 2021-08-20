@@ -56,7 +56,7 @@ public class PlayerMovement : PlayerComponent
 
     private void HandleGravity()
     {
-        isGrounded = Physics.CheckSphere(Player.GroundCheck.position, 0.4f, LayerMask.GetMask("Ground"));
+        isGrounded = Physics.CheckSphere(Player.GroundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
 
         if(isGrounded && velocity.y < 0)
         {

@@ -2,34 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.Spawning;
+using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
     public CharacterProps Props = null;
     public CharacterController CharacterController = null;
     public InputController Controller;
+    // public InputControl InputControl;
 
     [SerializeField] List<PlayerComponent> components = null;
 
     public Transform GroundCheck = null;
     public Transform CameraTransform = null;
+    public Transform WeaponHolder = null;
+
     
     void Awake()
     {
 
         Controller = new InputController();
+        Controller.Enable();
+
         CharacterController = this.GetComponent<CharacterController>();
         components = new List<PlayerComponent>();
-        CameraTransform = GetComponentInChildren<Camera>().transform;
 
         components.Add(new PlayerMovement(this));
         components.Add(new PlayerLook(this));
     }
 
     void OnEnable()
-    {
-        Controller.GamePlay.Enable();        
-        foreach(var c in components) c.OnEnable();        
+    {     
+        foreach(var c in components) c.OnEnable();
     }
 
     void OnDisable()
@@ -42,8 +48,8 @@ public class Player : NetworkBehaviour
     {
         if(!IsLocalPlayer)
         {
-            CameraTransform.GetComponent<Camera>().enabled = false;
-            CameraTransform.GetComponent<AudioListener>().enabled = false;
+            CameraTransform.GetComponentInChildren<Camera>().enabled = false;
+            CameraTransform.GetComponentInChildren<AudioListener>().enabled = false;
         }
     }
 
@@ -53,8 +59,10 @@ public class Player : NetworkBehaviour
         if(IsLocalPlayer)
         {
             foreach(var c in components) c.Tick();
+            
         }
     }
+
 }
 
 

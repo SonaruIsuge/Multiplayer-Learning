@@ -41,6 +41,38 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c41e7e5-e5da-4c95-8567-29a11eeb3be5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""4add83aa-7563-468b-847f-a89797bcf7b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""00d3ebe4-56c5-449d-9b90-6941b5fac009"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a63a799-b67c-4daa-be68-590cef7202ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -168,7 +200,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f98d72be-7608-4f0b-a7c0-ed66c3623c85"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -197,6 +229,94 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85d1a750-62e6-4230-8912-251d9407f858"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c665de7-648c-4bc2-a430-83f48290e0d3"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9997c27-155b-41a0-9c73-baa1f4f3a43a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52695220-e23a-4b52-b97b-ba220b52b2e3"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a17a7cc-6abb-468c-a159-dc1291a8b02d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""525069be-12cc-4327-89d7-760003626935"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dab0d9f2-3936-46f5-a625-7fe2c10018c2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""633d6485-1e91-4505-aa07-e37acecb62d6"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +328,10 @@ public class @InputController : IInputActionCollection, IDisposable
         m_GamePlay_Movement = m_GamePlay.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Rotate = m_GamePlay.FindAction("Rotate", throwIfNotFound: true);
+        m_GamePlay_Fire = m_GamePlay.FindAction("Fire", throwIfNotFound: true);
+        m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
+        m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
+        m_GamePlay_Drop = m_GamePlay.FindAction("Drop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +384,10 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Movement;
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Rotate;
+    private readonly InputAction m_GamePlay_Fire;
+    private readonly InputAction m_GamePlay_Aim;
+    private readonly InputAction m_GamePlay_Interact;
+    private readonly InputAction m_GamePlay_Drop;
     public struct GamePlayActions
     {
         private @InputController m_Wrapper;
@@ -267,6 +395,10 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_GamePlay_Movement;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Rotate => m_Wrapper.m_GamePlay_Rotate;
+        public InputAction @Fire => m_Wrapper.m_GamePlay_Fire;
+        public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
+        public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
+        public InputAction @Drop => m_Wrapper.m_GamePlay_Drop;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +417,18 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
+                @Fire.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnFire;
+                @Aim.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @Interact.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
+                @Drop.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -298,6 +442,18 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
             }
         }
     }
@@ -307,5 +463,9 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
     }
 }

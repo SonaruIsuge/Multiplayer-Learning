@@ -20,4 +20,5 @@ public class PlayerComponent
     public virtual void OnEnable() {}
     public virtual void OnDisable() {}
     public virtual void Tick() {}
+
 }
