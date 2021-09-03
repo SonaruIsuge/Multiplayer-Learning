@@ -50,6 +50,7 @@ public class Player : NetworkBehaviour
         {
             CameraTransform.GetComponentInChildren<Camera>().enabled = false;
             CameraTransform.GetComponentInChildren<AudioListener>().enabled = false;
+            Controller.Disable();
         }
     }
 

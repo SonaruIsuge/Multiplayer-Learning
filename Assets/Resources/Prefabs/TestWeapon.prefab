@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 4925660394032143333}
   - component: {fileID: 5146258400523574498}
   - component: {fileID: 2050083002927538084}
-  - component: {fileID: 3639657813838969611}
+  - component: {fileID: 1315625024867229469}
+  - component: {fileID: 1971692149}
   m_Layer: 0
   m_Name: TestWeapon
   m_TagString: Untagged
@@ -180,7 +181,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3639657813838969611
+--- !u!114 &1315625024867229469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,6 +190,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7102799739437767079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0fa7b78f3badf4f88aca63f35045cf, type: 3}
+  m_Script: {fileID: 11500000, guid: f21e88d5264cdae44b4d2b683e5593ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+--- !u!114 &1971692149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102799739437767079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed2d613f14f96a4ea698ed8ad491fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  data: {fileID: 11400000, guid: 9014f3c40f94d9546b81a91e733e2999, type: 2}
+  shooting: 0
+  reloading: 0
+  aiming: 0
+  ammo: 0

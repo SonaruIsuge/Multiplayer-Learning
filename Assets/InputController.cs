@@ -73,6 +73,14 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""726b393d-107c-4578-bde6-99df63008177"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -317,6 +325,17 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2f28630-ec63-47d0-9f3f-716ae106b837"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -332,6 +351,7 @@ public class @InputController : IInputActionCollection, IDisposable
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_Drop = m_GamePlay.FindAction("Drop", throwIfNotFound: true);
+        m_GamePlay_Reload = m_GamePlay.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -388,6 +408,7 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_Interact;
     private readonly InputAction m_GamePlay_Drop;
+    private readonly InputAction m_GamePlay_Reload;
     public struct GamePlayActions
     {
         private @InputController m_Wrapper;
@@ -399,6 +420,7 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
         public InputAction @Drop => m_Wrapper.m_GamePlay_Drop;
+        public InputAction @Reload => m_Wrapper.m_GamePlay_Reload;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -429,6 +451,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Drop.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDrop;
+                @Reload.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -454,6 +479,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -467,5 +495,6 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }

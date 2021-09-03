@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4d317b4954f964f9a4eee6df3c3543, type: 3}
+  m_Name: RGD-5
+  m_EditorClassIdentifier: 
+  weaponName: RGD-5
+  type: 1
+  throwForce: 4
+  throwExtraForce: 7
+  rotationForce: 150
+  animTime: 0.15
+  damage: 100
+  forwardForce: 1
+  UpwardForce: 0
+  delayTime: 3
+  explodeRadius: 30
+  explodeForce: 15

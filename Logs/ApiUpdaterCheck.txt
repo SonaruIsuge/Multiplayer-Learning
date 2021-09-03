@@ -1,0 +1,30 @@
+[api-updater (non-obsolete-error-filter)] 2021/8/23 下午 12:21:17 : Starting C:/Program Files/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 100.7262ms
+moved types parse time: 58ms
+candidates parse time : 1ms
+C# parse time         : 302ms
+candidates check time : 47ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 2021/8/30 下午 09:59:37 : Starting C:/Program Files/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 323.1362ms
+moved types parse time: 71ms
+candidates parse time : 1ms
+C# parse time         : 365ms
+candidates check time : 87ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 2021/8/30 下午 10:21:10 : Starting C:/Program Files/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 326.4751ms
+moved types parse time: 76ms
+candidates parse time : 1ms
+C# parse time         : 308ms
+candidates check time : 84ms
+console write time    : 1ms
+

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1054a1e36cbfd124a8aba860358452d1, type: 3}
+  m_Name: M1911
+  m_EditorClassIdentifier: 
+  weaponName: M1911
+  type: 0
+  throwForce: 4
+  throwExtraForce: 7
+  rotationForce: 100
+  animTime: 0.2
+  damage: 20
+  maxAmmo: 10
+  shotsPerSecond: 5
+  reloadSpeed: 1.25
+  hitForce: 5
+  range: 200
+  tapable: 1
+  kickbackForce: 0.2
+  resetSmooth: 11.75
+  scopePos: {x: 0.44, y: 0.044, z: 0.2}
+  defaultFov: 55
+  scopeFov: 40
+  fovSmooth: 11
+  crossHair: {fileID: 0}
+  scopeCrosshair: {fileID: 0}
