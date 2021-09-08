@@ -6,6 +6,7 @@ public interface IWeaponAction
 { 
    void SetOwner(Player owner);
    void Aim();
+   void ReleaseAim();
    void Reload();
    void FireDown();
    void FireHold();

@@ -18,6 +18,7 @@ public class Player : NetworkBehaviour
     public Transform GroundCheck = null;
     public Transform CameraTransform = null;
     public Transform WeaponHolder = null;
+    public Camera FpsCamera = null;
 
     
     void Awake()
@@ -28,6 +29,7 @@ public class Player : NetworkBehaviour
 
         CharacterController = this.GetComponent<CharacterController>();
         components = new List<PlayerComponent>();
+        FpsCamera = this.GetComponentInChildren<Camera>();
 
         components.Add(new PlayerMovement(this));
         components.Add(new PlayerLook(this));

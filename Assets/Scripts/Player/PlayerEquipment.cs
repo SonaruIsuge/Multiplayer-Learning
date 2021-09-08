@@ -23,7 +23,7 @@ public class PlayerEquipment : NetworkBehaviour
     [SerializeField] CharacterProps props = null;
 
     public GameObject TestWeapon = null;    
-    [SerializeField] GameObject equipItem = null;
+    [SerializeField] Weapon equipItem = null;
 
     void Awake()
     {
@@ -109,6 +109,7 @@ public class PlayerEquipment : NetworkBehaviour
     {
         if(IsLocalPlayer)
         {
+            //Pick and Drop
             if(interact)
             {
                 TryGetItem();
@@ -124,18 +125,30 @@ public class PlayerEquipment : NetworkBehaviour
                 drop = false;
             }
 
+            //Fire and Reload
             if(aim)
             {
+                if(!equipItem) return;
+
                 Debug.Log("aim");
-                // WeaponAction.Aim();
+                equipItem.weaponAction.Aim();
+            }
+            else
+            {
+                if(!equipItem) return;
+
+                Debug.Log("release aim");
+                equipItem.weaponAction.ReleaseAim();
             }
 
             if(reload)
             {
                 if(!equipItem) return;
 
-                Debug.Log("reload");
-                equipItem.GetComponent<IWeaponAction>().Reload();
+                // Debug.Log("reload");
+                // equipItem.weaponAction.ReleaseAim();
+
+                equipItem.weaponAction.Reload();
             }
 
             if(fireDown)
@@ -143,7 +156,7 @@ public class PlayerEquipment : NetworkBehaviour
                 if(!equipItem) return;
 
                 // Debug.Log("fire down");
-                equipItem.GetComponent<IWeaponAction>().FireDown();
+                equipItem.weaponAction.FireDown();
             }
 
             if(fireHold)
@@ -151,7 +164,7 @@ public class PlayerEquipment : NetworkBehaviour
                 if(!equipItem) return;
 
                 // Debug.Log("fire hold");
-                equipItem.GetComponent<IWeaponAction>().FireHold();
+                equipItem.weaponAction.FireHold();
             }
 
             if(fireUp)
@@ -159,7 +172,7 @@ public class PlayerEquipment : NetworkBehaviour
                 if(!equipItem) return;
 
                 // Debug.Log("fire up");
-                equipItem.GetComponent<IWeaponAction>().FireUp();
+                equipItem.weaponAction.FireUp();
             }
         }        
     }   
@@ -186,7 +199,7 @@ public class PlayerEquipment : NetworkBehaviour
     {
         if(equipItem == null) return;
         // DropServerRpc(); 
-        equipItem.GetComponent<Weapon>().Drop();
+        equipItem.Drop();
         equipItem = null;       
     }
 
@@ -199,8 +212,9 @@ public class PlayerEquipment : NetworkBehaviour
     [ClientRpc]
     private void SetPickUpClientRpc(ulong itemNetId)
     {
-        equipItem = NetworkSpawnManager.SpawnedObjects[itemNetId].gameObject;
-        equipItem.GetComponent<Weapon>().SetOwner(this.player);
+        var equipObject = NetworkSpawnManager.SpawnedObjects[itemNetId].gameObject;
+        equipItem = equipObject.GetComponent<Weapon>();
+        equipItem.SetOwner(this.player);
     }
 
 #region Not Using function

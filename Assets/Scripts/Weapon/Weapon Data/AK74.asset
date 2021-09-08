@@ -27,7 +27,7 @@ MonoBehaviour:
   tapable: 0
   kickbackForce: 0.075
   resetSmooth: 11.75
-  scopePos: {x: 0.44, y: 0.035, z: 0.42}
+  scopePos: {x: -0.44, y: 0.035, z: 0.42}
   defaultFov: 55
   scopeFov: 40
   fovSmooth: 11

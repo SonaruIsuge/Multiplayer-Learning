@@ -31,7 +31,23 @@ public class GunAction : NetworkBehaviour, IWeaponAction
 
     public void Aim()
     {
+        if(reloading) return;
 
+        aiming = true;
+
+        transform.localRotation = Quaternion.identity;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, data.scopePos, data.fovSmooth * Time.deltaTime);
+
+        owner.FpsCamera.fieldOfView = Mathf.Lerp(owner.FpsCamera.fieldOfView, data.scopeFov, data.fovSmooth * Time.deltaTime);
+    }
+
+    public void ReleaseAim()
+    {
+        aiming = false;
+
+        transform.localRotation = Quaternion.identity;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, data.resetSmooth * Time.deltaTime);
+        owner.FpsCamera.fieldOfView = Mathf.Lerp(owner.FpsCamera.fieldOfView, data.defaultFov, data.resetSmooth * Time.deltaTime);
     }
 
     public void FireDown()
@@ -61,6 +77,8 @@ public class GunAction : NetworkBehaviour, IWeaponAction
         if(owner == null || ammo <= 0 || reloading || shooting) return;
         shooting = true;
         netAmmo.Value--;
+        transform.localPosition -= new Vector3(0, 0, data.kickbackForce);
+        GunKickbackReset();
         FireServerRpc();
         
         await Task.Delay(1000 / data.shotsPerSecond);
@@ -70,9 +88,15 @@ public class GunAction : NetworkBehaviour, IWeaponAction
     public async void Reload()
     {
         if(owner == null || ammo >= data.maxAmmo || reloading) return;
+        
         reloading = true;
         
-        await Task.Delay((int)(data.reloadSpeed * 1000));
+        for(float time = 0; time <= data.reloadSpeed; time += Time.deltaTime)
+        {
+            ReleaseAim();
+            await Task.Yield();
+        }
+        
         netAmmo.Value = data.maxAmmo;
         reloading = false;
     }
@@ -80,31 +104,46 @@ public class GunAction : NetworkBehaviour, IWeaponAction
     [ServerRpc]
     private void FireServerRpc()
     {
-        FireClientRpc();
-    }
-
-    [ClientRpc]
-    private void FireClientRpc()
-    {
-        transform.localPosition -= new Vector3(0, 0, data.kickbackForce);
         if(Physics.Raycast(owner.CameraTransform.position, owner.CameraTransform.forward, out var hitInfo, data.range))
         {            
             var rb = hitInfo.transform.GetComponent<Rigidbody>();
             if(rb != null) rb.velocity += owner.CameraTransform.forward * data.hitForce;
             // Debug.Log(owner.CameraTransform.forward * data.hitForce);
         }
-        GunKickbackReset();
+        FireClientRpc();
+    }
+
+    [ClientRpc]
+    private void FireClientRpc()
+    {
+        // transform.localPosition -= new Vector3(0, 0, data.kickbackForce);
+        // GunKickbackReset();
     }
 
     private async void GunKickbackReset()
     {
-        while(transform.localPosition != Vector3.zero)
+        if(aiming)
         {
-            await Task.Yield();
-            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, data.resetSmooth * Time.deltaTime);
-            if(transform.localPosition.z >= 0)
+            while(transform.localPosition != data.scopePos)
             {
-                transform.localPosition = Vector3.zero;
+                await Task.Yield();
+                transform.localPosition = Vector3.Lerp(transform.localPosition, data.scopePos, data.resetSmooth * Time.deltaTime);
+                if(transform.localPosition.z >= data.scopePos.z)
+                {
+                    transform.localPosition = data.scopePos;
+                }
+            }
+        }
+        else
+        {
+            while(transform.localPosition != Vector3.zero)
+            {
+                await Task.Yield();
+                transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, data.resetSmooth * Time.deltaTime);
+                if(transform.localPosition.z >= 0)
+                {
+                    transform.localPosition = Vector3.zero;
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ public class Weapon : NetworkBehaviour, IPickable
 
     private Rigidbody rb = null;
     [SerializeField] private Player owner = null;
-    [SerializeField] private IWeaponAction weaponAction = null;
+    [SerializeField] public IWeaponAction weaponAction = null;
 
     void Awake()
     {
