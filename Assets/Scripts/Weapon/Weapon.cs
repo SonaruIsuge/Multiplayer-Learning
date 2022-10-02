@@ -53,7 +53,7 @@ public class Weapon : NetworkBehaviour, IPickable
     {
         rb.isKinematic = true;
         rb.useGravity = false;
-        
+        this.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         // owner = NetworkManager.Singleton.ConnectedClients[ownerNetId].PlayerObject.GetComponent<Player>();
         // weaponAction.SetOwner(owner);
 
@@ -74,6 +74,7 @@ public class Weapon : NetworkBehaviour, IPickable
     {
         rb.isKinematic = false;
         rb.useGravity = true;
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
         this.transform.SetParent(null);
 
         owner = null;

@@ -804,6 +804,7 @@ MonoBehaviour:
   GroundCheck: {fileID: 6711430350961497349}
   CameraTransform: {fileID: 6711430350115630727}
   WeaponHolder: {fileID: 8958437073171452736}
+  FpsCamera: {fileID: 0}
 --- !u!114 &15220421758499737
 MonoBehaviour:
   m_ObjectHideFlags: 0

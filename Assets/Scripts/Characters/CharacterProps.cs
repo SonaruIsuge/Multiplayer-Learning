@@ -30,6 +30,6 @@ public class CharacterProps : ScriptableObject
     public float swaySmooth;
 
     [Space()]
-    [Header("WeaponManagerment")]
+    [Header("WeaponManagement")]
     public int maxEquipment;
 }

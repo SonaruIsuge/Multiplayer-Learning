@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class PlayerEquipment : NetworkBehaviour
 
     public GameObject TestWeapon = null;    
     [SerializeField] Weapon equipItem = null;
+
+    public event Action<IWeaponAction> OnCurrentWeaponChange;  
 
     void Awake()
     {
@@ -130,14 +133,15 @@ public class PlayerEquipment : NetworkBehaviour
             {
                 if(!equipItem) return;
 
-                Debug.Log("aim");
+                // Debug.Log("aim");
                 equipItem.weaponAction.Aim();
             }
-            else
+            
+            if(!aim)
             {
                 if(!equipItem) return;
 
-                Debug.Log("release aim");
+                // Debug.Log("release aim");
                 equipItem.weaponAction.ReleaseAim();
             }
 
@@ -146,7 +150,6 @@ public class PlayerEquipment : NetworkBehaviour
                 if(!equipItem) return;
 
                 // Debug.Log("reload");
-                // equipItem.weaponAction.ReleaseAim();
 
                 equipItem.weaponAction.Reload();
             }
@@ -175,7 +178,9 @@ public class PlayerEquipment : NetworkBehaviour
                 equipItem.weaponAction.FireUp();
             }
         }        
-    }   
+    }
+
+    public Weapon GetCurrentWeapon => equipItem;
 
     private void TryGetItem()
     {
@@ -200,7 +205,8 @@ public class PlayerEquipment : NetworkBehaviour
         if(equipItem == null) return;
         // DropServerRpc(); 
         equipItem.Drop();
-        equipItem = null;       
+        equipItem = null;     
+        OnCurrentWeaponChange?.Invoke(null);
     }
 
     [ServerRpc]
@@ -215,8 +221,9 @@ public class PlayerEquipment : NetworkBehaviour
         var equipObject = NetworkSpawnManager.SpawnedObjects[itemNetId].gameObject;
         equipItem = equipObject.GetComponent<Weapon>();
         equipItem.SetOwner(this.player);
+        OnCurrentWeaponChange?.Invoke(equipItem.weaponAction);
     }
-
+    
 #region Not Using function
 
     // [ServerRpc]

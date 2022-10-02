@@ -15,8 +15,8 @@ public class GunAction : NetworkBehaviour, IWeaponAction
     [SerializeField] private bool reloading = false;
     [SerializeField] private bool aiming = false;
 
-    NetworkVariable<int> netAmmo = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
-    [SerializeField] private int ammo = 0;
+    public NetworkVariable<int> netAmmo = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+    [SerializeField] public int ammo = 0;
 
     void Awake()
     {
@@ -43,6 +43,8 @@ public class GunAction : NetworkBehaviour, IWeaponAction
 
     public void ReleaseAim()
     {
+        //if(transform.localPosition == Vector3.zero && owner.FpsCamera.fieldOfView == data.defaultFov) return;
+        
         aiming = false;
 
         transform.localRotation = Quaternion.identity;
@@ -66,7 +68,9 @@ public class GunAction : NetworkBehaviour, IWeaponAction
     {
 
     }
-    
+
+    public int GetAmmo() => netAmmo.Value;
+
     public void SetOwner(Player owner)
     {
         this.owner = owner;

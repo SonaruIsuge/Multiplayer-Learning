@@ -11,4 +11,6 @@ public interface IWeaponAction
    void FireDown();
    void FireHold();
    void FireUp();
+   
+   public abstract int GetAmmo();
 }
